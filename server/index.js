@@ -4,6 +4,7 @@ const cors = require("cors");
 const app = express();
 
 const PlayerModel = require("./models/Player");
+const Player = require("./models/Player");
 
 app.use(express.json());
 app.use(cors());
@@ -31,6 +32,13 @@ app.post("/", async (req, res) => {
   }
 });
 
+app.get("/test", async (req, res) => {
+  Player.find({ class: "Warrior" }, (err, result) => {
+    if (err) {
+    }
+    res.send(result);
+  });
+});
 app.listen(3001, () => {
   console.log("Server is running on port 3001");
 });
