@@ -17,6 +17,10 @@ const PlayerSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  class: {
+    type: String,
+    required: true,
+  },
 });
 
 const Player = mongoose.model("players", PlayerSchema);
