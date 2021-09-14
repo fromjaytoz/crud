@@ -17,7 +17,7 @@ const PlayerSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  class: {
+  charClass: {
     type: String,
     required: true,
   },

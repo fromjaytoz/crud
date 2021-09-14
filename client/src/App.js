@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import CharCreation from "./pages/CharCreation/CharCreation";
+import AllCharacters from "./pages/AllCharacters/AllCharacters";
 import Navbar from "./components/Navbar/Navbar";
 
 function App() {
@@ -12,7 +13,9 @@ function App() {
       <Route exact path="/">
         <h1>Blue's Table</h1>
       </Route>
-      <Route path="/all-characters">{/* <AllCharacters /> */}</Route>
+      <Route path="/all-characters">
+        <AllCharacters />
+      </Route>
     </Router>
   );
 }

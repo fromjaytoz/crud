@@ -14,10 +14,15 @@ mongoose.connect(
   { useNewUrlParser: true }
 );
 
-app.get("/", async (req, res) => {
-  Player.find({}, (err, request) => {
-    res.send(request);
-  });
+app.get("/all", async (req, res) => {
+  console.log("test");
+  try {
+    Player.find({}, (err, result) => {
+      res.send(result);
+    });
+  } catch (err) {
+    res.send(err);
+  }
 });
 
 app.post("/", async (req, res) => {
@@ -27,7 +32,7 @@ app.post("/", async (req, res) => {
     strength: str,
     agility: agi,
     intelligence: int,
-    class: charClass,
+    charClass: charClass,
   });
   try {
     await Player.save();
@@ -39,9 +44,7 @@ app.post("/", async (req, res) => {
 });
 
 app.get("/test", async (req, res) => {
-  Player.find({ class: "Warrior" }, (err, result) => {
-    if (err) {
-    }
+  Player.find({ charClass: "Warrior" }, (err, result) => {
     res.send(result);
   });
 });
