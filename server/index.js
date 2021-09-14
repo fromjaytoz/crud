@@ -14,6 +14,12 @@ mongoose.connect(
   { useNewUrlParser: true }
 );
 
+app.get("/", async (req, res) => {
+  Player.find({}, (err, request) => {
+    res.send(request);
+  });
+});
+
 app.post("/", async (req, res) => {
   const { name, str, agi, int, charClass } = req.body;
   const Player = new PlayerModel({
