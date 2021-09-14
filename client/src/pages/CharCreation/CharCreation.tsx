@@ -1,24 +1,28 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import CharacterInterface from "../../interfaces/CharacterInterface";
 
 function CharCreation() {
   const [name, setName] = useState("");
-  const [str, setStr] = useState(0);
-  const [agi, setAgi] = useState(0);
-  const [int, setInt] = useState(0);
+  const [str, setStr] = useState<string | number>(0);
+  const [agi, setAgi] = useState<string | number>(0);
+  const [int, setInt] = useState<string | number>(0);
   const [charClass, setCharClass] = useState("");
 
-  const sendStatsToServer = async (e) => {
+  const sendStatsToServer = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/", {
-        name,
-        str,
-        agi,
-        int,
-        charClass,
-      });
+      const res = await axios.post<CharacterInterface>(
+        "http://localhost:3001/",
+        {
+          name,
+          str,
+          agi,
+          int,
+          charClass,
+        }
+      );
       await console.log(res.data);
     } catch (err) {
       console.log(err);

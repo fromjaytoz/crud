@@ -11,7 +11,7 @@ function App() {
         <CharCreation />
       </Route>
       <Route exact path="/">
-        <h1>Blue's Table</h1>
+        <h1>Jorell's Table</h1>
       </Route>
       <Route path="/all-characters">
         <AllCharacters />
