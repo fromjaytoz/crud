@@ -18,11 +18,12 @@ function AllCharacters() {
   }, []);
   return (
     <div>
-      {charList.map(({ name, strength, agility, charClass }) => (
+      {charList.map(({ name, strength, agility, int, charClass }) => (
         <div>
           <h1>{name}</h1>
           <p>Strength:{strength}</p>
           <p>Agility:{agility}</p>
+          <p>Intelligence:{int}</p>
           <p>Class:{charClass}</p>
         </div>
       ))}
