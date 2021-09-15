@@ -7,10 +7,10 @@ function Navbar() {
       <Link to="/">
         <button>Home</button>
       </Link>
-      <Link to="/character-creation">
+      <Link data-testid="nav-button" to="/character-creation">
         <button>Character Creation</button>
       </Link>
-      <Link to="/all-characters">
+      <Link data-testid="nav-button" to="/all-characters">
         <button>View All Characters</button>
       </Link>
     </div>

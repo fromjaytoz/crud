@@ -30,7 +30,7 @@ function CharCreation() {
   };
 
   return (
-    <div>
+    <div data-testid="char-creation">
       <form onSubmit={(e) => sendStatsToServer(e)}>
         <label>Character Name</label>
         <input
