@@ -4,4 +4,5 @@ export default interface CharacterInterface {
   agility: number;
   intelligence: number;
   charClass: string;
+  _id: string;
 }
