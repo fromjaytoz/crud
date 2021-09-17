@@ -51,7 +51,7 @@ const Character: React.FC<CharacterInterface> = ({
                 dispatch({ type: "clicked", payload: state.value });
               }}
               onKeyUp={(e) => {
-                e.keyCode === 13 && e.target.addEventListener("blur", () => {});
+                e.keyCode === 13 && e.currentTarget.blur();
               }}
             ></input>
           ),
