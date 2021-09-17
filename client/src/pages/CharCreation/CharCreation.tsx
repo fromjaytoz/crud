@@ -4,7 +4,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import CharacterInterface from "../../interfaces/CharacterInterface";
 
-function CharCreation() {
+const CharCreation: React.FC = () => {
   const [name, setName] = useState("");
   const [str, setStr] = useState<string | number>(0);
   const [agi, setAgi] = useState<string | number>(0);
@@ -74,6 +74,6 @@ function CharCreation() {
       </form>
     </div>
   );
-}
+};
 
 export default CharCreation;
