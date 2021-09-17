@@ -48,7 +48,7 @@ const Character: React.FC<CharacterInterface> = ({
               }}
               onBlur={async (e) => {
                 console.log(state.value);
-                dispatch({ type: "clicked", payload: state.value });
+                action.dispatch({ type: "clicked", payload: state.value });
               }}
               onKeyUp={(e) => {
                 e.keyCode === 13 && e.currentTarget.blur();
@@ -60,7 +60,11 @@ const Character: React.FC<CharacterInterface> = ({
         return { ...state, render: <span>{action.payload}</span> };
     }
   };
-  const [strengthState, dispatch] = useReducer(reducer, initialState(strength));
+  const [nameState, nameDispatch] = useReducer(reducer, initialState(name));
+  const [strengthState, strengthDispatch] = useReducer(
+    reducer,
+    initialState(strength)
+  );
 
   const deleteChar = (charId: string) => {
     try {
@@ -76,10 +80,16 @@ const Character: React.FC<CharacterInterface> = ({
 
   return (
     <div>
-      <h1>{name}</h1>
+      <h1
+        onClick={() => {
+          nameDispatch({ type: "unclicked", dispatch: nameDispatch });
+        }}
+      >
+        {nameState.render}
+      </h1>
       <p
         onClick={() => {
-          dispatch({ type: "unclicked" });
+          strengthDispatch({ type: "unclicked", dispatch: strengthDispatch });
         }}
       >
         Strength:{strengthState?.render}
