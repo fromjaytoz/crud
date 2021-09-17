@@ -2,21 +2,38 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import CharCreation from "./pages/CharCreation/CharCreation";
 import AllCharacters from "./pages/AllCharacters/AllCharacters";
 import Navbar from "./components/Navbar/Navbar";
+import GlobalStyle from './styled/globalStyles';
+
+import {
+  Header,
+} from './styled/styled'
+import {
+  AppView,
+  NavBarContentContainer,
+  ContentContainer
+} from './App-styled'
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Route path="/character-creation">
-        <CharCreation />
-      </Route>
-      <Route exact path="/">
-        <h1>Jorell's Table</h1>
-      </Route>
-      <Route path="/all-characters">
-        <AllCharacters />
-      </Route>
-    </Router>
+    <AppView>
+      <Router>
+        <GlobalStyle />
+        <NavBarContentContainer>
+          <Navbar />
+          <ContentContainer>
+            <Route path="/character-creation">
+              <CharCreation />
+            </Route>
+            <Route exact path="/">
+              <Header>Jorell's Table</Header>
+            </Route>
+            <Route path="/all-characters">
+              <AllCharacters />
+            </Route>
+          </ContentContainer>
+        </NavBarContentContainer>
+      </Router>
+    </AppView>
   );
 }
 

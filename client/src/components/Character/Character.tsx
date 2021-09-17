@@ -1,5 +1,9 @@
 import React from "react";
 import CharacterInterface from "../../interfaces/CharacterInterface";
+import {
+  Header,
+  RegularText
+} from "../../styled/styled"
 
 const Character: React.FC<CharacterInterface> = ({
   agility,
@@ -10,11 +14,13 @@ const Character: React.FC<CharacterInterface> = ({
 }) => {
   return (
     <div>
-      <h1>{name}</h1>
-      <p>Strength:{strength}</p>
-      <p>Agility:{agility}</p>
-      <p>Intelligence:{intelligence}</p>
-      <p>Class:{charClass}</p>
+      <Header>{name}</Header>
+      <RegularText>Strength: {strength}</RegularText>
+      <RegularText>Agility: {agility}</RegularText>
+      <RegularText>Intelligence: {intelligence}</RegularText>
+      <RegularText
+        m={"0 0 60px 0"}
+      >Class: {charClass}</RegularText>
     </div>
   );
 };

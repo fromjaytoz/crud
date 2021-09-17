@@ -2,6 +2,17 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import CharacterInterface from "../../interfaces/CharacterInterface";
+import avatar from "../../assets/avatar.png"
+
+import {
+  CharCreationContainer,
+  CharCreationForm,
+  AvatarContainer,
+  AvatarImage,
+  Button,
+  LineBreak
+} from "./CharCreation-styled"
+import { RegularText } from "../../styled/styled";
 
 function CharCreation() {
   const [name, setName] = useState("");
@@ -30,7 +41,14 @@ function CharCreation() {
   };
 
   return (
-    <div data-testid="char-creation">
+    <CharCreationContainer data-testid="char-creation">
+      <div >
+        <RegularText>Level: 1</RegularText>
+        <RegularText>Health: 44/44</RegularText>
+        <RegularText>Experience: 134</RegularText>
+        <RegularText>Next level at: 600</RegularText>
+        <LineBreak />
+      </div>
       <form onSubmit={(e) => sendStatsToServer(e)}>
         <label>Character Name</label>
         <input
@@ -39,6 +57,9 @@ function CharCreation() {
             setName(e.target.value);
           }}
         ></input>
+        <AvatarContainer>
+          <AvatarImage src={avatar} alt={"avatar"}/>
+        </AvatarContainer>
         <label>Strength</label>
         <input
           value={str || ""}
@@ -46,6 +67,7 @@ function CharCreation() {
             setStr(e.target.value);
           }}
         ></input>
+        <br/>
         <label>Agility</label>
         <input
           value={agi || ""}
@@ -53,6 +75,7 @@ function CharCreation() {
             setAgi(e.target.value);
           }}
         ></input>
+        <br/>
         <label>Intelligence</label>
         <input
           value={int || ""}
@@ -61,6 +84,7 @@ function CharCreation() {
             console.log(int);
           }}
         ></input>
+        <br/>
         <label>Class</label>
         <input
           value={charClass || ""}
@@ -68,9 +92,15 @@ function CharCreation() {
             setCharClass(e.target.value);
           }}
         ></input>
-        <button type="submit">Submit</button>
+        <br/>
+        <Button
+        w={"auto"}
+        type="submit">Submit</Button>
       </form>
-    </div>
+      <div>
+        <Button>+</Button>
+      </div>
+    </CharCreationContainer>
   );
 }
 
