@@ -15,7 +15,6 @@ mongoose.connect(
 );
 
 app.get("/all", async (req, res) => {
-  console.log("test");
   try {
     Player.find({}, (err, result) => {
       res.send(result);
