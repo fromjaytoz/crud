@@ -6,15 +6,15 @@ import {
   NavBarButton,
 } from './Navbar-styled'
 
-function Navbar() {
+const Navbar: React.FC = () =>  {
   const [clicked, setClicked] = useState([false, false, false]);
 
   return (
-    <NavBarContainer data-testid="nav">
+    <NavBarContainer data-testid="nav-button">
       <Link to="/">
         <NavBarButton
           clicked={clicked[0]}
-          onClick={(e) =>
+          onClick={(e:React.ChangeEvent<HTMLInputElement>) =>
             setClicked((prev) => [true, false, false])
           }
         >Home</NavBarButton>
@@ -22,7 +22,7 @@ function Navbar() {
       <Link data-testid="nav-NavBarButton" to="/character-creation">
         <NavBarButton
           clicked={clicked[1]}
-          onClick={(e) =>
+          onClick={(e:React.ChangeEvent<HTMLInputElement>) =>
             setClicked((prev) => [false, true, false])
           }
         >Character Creation</NavBarButton>
@@ -30,13 +30,13 @@ function Navbar() {
       <Link data-testid="nav-NavBarButton" to="/all-characters">
         <NavBarButton
           clicked={clicked[2]}
-          onClick={(e) =>
+          onClick={(e:React.ChangeEvent<HTMLInputElement>) =>
             setClicked((prev) => [false, false, true])
           }
         >View All Characters</NavBarButton>
       </Link>
     </NavBarContainer>
   );
-}
+};
 
 export default Navbar;

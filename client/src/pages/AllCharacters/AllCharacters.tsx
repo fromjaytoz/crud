@@ -21,9 +21,9 @@ const AllCharacters: React.FC = () => {
     console.log(charList);
   }, []);
   return (
-    <div data-testid="all-chars">
+    <div data-testid="all">
       {charList.map((props) => (
-        <Character {...props} />
+        <Character {...props} key={props._id} />
       ))}
     </div>
   );

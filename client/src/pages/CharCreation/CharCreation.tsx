@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import CharacterInterface from "../../interfaces/CharacterInterface";
 import avatar from "../../assets/avatar.png"
 
@@ -14,13 +15,13 @@ import {
 } from "./CharCreation-styled"
 import { RegularText } from "../../styled/styled";
 
-function CharCreation() {
+const CharCreation: React.FC = () => {
   const [name, setName] = useState("");
   const [str, setStr] = useState<string | number>(0);
   const [agi, setAgi] = useState<string | number>(0);
   const [int, setInt] = useState<string | number>(0);
   const [charClass, setCharClass] = useState("");
-
+  const history = useHistory();
   const sendStatsToServer = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -35,6 +36,7 @@ function CharCreation() {
         }
       );
       await console.log(res.data);
+      history.push("/all-characters");
     } catch (err) {
       console.log(err);
     }
@@ -102,6 +104,6 @@ function CharCreation() {
       </div>
     </CharCreationContainer>
   );
-}
+};
 
 export default CharCreation;
