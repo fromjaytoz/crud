@@ -43,6 +43,13 @@ app.post("/", async (req, res) => {
   }
 });
 
+app.delete("/deleteChar", async (req, res) => {
+  const id = req.body.id;
+  console.log(id);
+  await Player.findByIdAndRemove(id).exec();
+  await res.send(`${id} deleted!`);
+});
+
 app.get("/test", async (req, res) => {
   Player.find({ charClass: "Warrior" }, (err, result) => {
     res.send(result);
