@@ -16,6 +16,7 @@ const Character: React.FC<CharacterInterface> = ({
         data: { id: charId },
       });
       console.log(charId + " deleted");
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
