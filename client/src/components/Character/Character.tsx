@@ -101,8 +101,9 @@ const Character: React.FC<CharacterInterface> = ({
       </RegularText>
       <RegularText>Agility:{agility}</RegularText>
       <RegularText>Intelligence:{intelligence}</RegularText>
-      <RegularText m={"0 0 60px 0"}>Class:{charClass}</RegularText>
+      <RegularText m={"0 0 16px 0"}>Class:{charClass}</RegularText>
       <Button
+        m={"0 0 60px 0"}
         w={"auto"}
         bg={"radial-gradient(50% 50% at 50% 50%, #E21D1D 0%, #821111 100%)"}
       onClick={() => deleteChar(_id)}>Delete {_id}</Button>

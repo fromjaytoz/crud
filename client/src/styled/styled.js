@@ -6,6 +6,7 @@ export const Header = styled.h1`
     font-size: ${({fs}) => fs };
     font-weight: ${({fw}) => fw };
     margin: ${({m}) => m };
+    margin: 0 0 8px 0;
     color: ${({cl}) => cl };
     height: ${({ht}) => ht };
     text-align: ${({ta}) => ta};
@@ -38,6 +39,7 @@ export const Button = styled.button`
     width: ${({w}) => w};
     height: 29.4px;
     padding: 1.8px 7.4px;
+    margin: ${({m}) => m};
 
     font-size: 16px;
     font-family: 'Source Serif Pro', serif;
