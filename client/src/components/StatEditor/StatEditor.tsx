@@ -6,29 +6,32 @@ interface StatEdit {
 }
 
 const StatEditor: React.FC<StatEdit> = ({ originalStat, dispatch }) => {
+  const [input, setInput] = useState(originalStat);
   return (
     <input
+      value={input}
+      onChange={(e) => setInput(e.target.value)}
       onBlur={async (e) => {
         const playerStatMustBeString = typeof originalStat === "string";
-        const whatUserTyped = e.target.value;
-        const notAnEmptyString = whatUserTyped.length
-          ? whatUserTyped
+        const originalValueIfEmptyInput = input ? input : originalStat;
+        const inputIsANumber = !isNaN(Number(input));
+        const numberOrString = inputIsANumber
+          ? Number(originalValueIfEmptyInput)
           : originalStat;
-        const numberStatIsANumber = Number(
-          isNaN(Number(whatUserTyped)) ? originalStat : notAnEmptyString
-        );
-        //Execution
-        originalStat = playerStatMustBeString
-          ? notAnEmptyString
+        const numberStatIsANumber = numberOrString;
+        const newValue = playerStatMustBeString
+          ? originalValueIfEmptyInput
           : numberStatIsANumber;
-        console.log(originalStat);
-        dispatch({ type: "editOff", payload: originalStat });
+        //Execution
+        dispatch({
+          type: "editOff",
+          payload: newValue || newValue === 0 ? newValue : originalStat,
+        });
       }}
       onKeyUp={(e) => {
         e.keyCode === 13 && e.currentTarget.blur();
       }}
       onMouseOver={(e) => e.currentTarget.focus()}
-      placeholder={`Changing '${originalStat}'`}
     ></input>
   );
 };

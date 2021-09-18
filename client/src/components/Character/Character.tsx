@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useState } from "react";
 import CharacterInterface from "../../interfaces/CharacterInterface";
 import { Header, RegularText } from "../../styled/styled";
 import axios from "axios";
@@ -12,7 +12,7 @@ interface AttributeState {
 
 interface ReducerAction {
   type: string;
-  payload: number;
+  payload: number | string;
 }
 
 const Character: React.FC<CharacterInterface> = ({
@@ -41,7 +41,11 @@ const Character: React.FC<CharacterInterface> = ({
           ),
         };
       case "editOff":
-        return { ...state, renderStatEditor: <span>{action.payload}</span> };
+        return {
+          ...state,
+          renderStatEditor: <span>{action.payload}</span>,
+          value: action.payload,
+        };
     }
   };
   const [nameState, nameDispatch] = useReducer(
