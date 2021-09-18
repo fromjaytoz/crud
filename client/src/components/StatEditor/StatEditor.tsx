@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 interface StatEdit {
   originalStat: number | string;
-  dispatch: any;
+  dispatch: React.Dispatch<{}>;
 }
 
 const StatEditor: React.FC<StatEdit> = ({ originalStat, dispatch }) => {
@@ -12,16 +12,18 @@ const StatEditor: React.FC<StatEdit> = ({ originalStat, dispatch }) => {
       value={input}
       onChange={(e) => setInput(e.target.value)}
       onBlur={async (e) => {
-        const playerStatMustBeString = typeof originalStat === "string";
-        const originalValueIfEmptyInput = input ? input : originalStat;
-        const inputIsANumber = !isNaN(Number(input));
-        const numberOrString = inputIsANumber
+        const playerStatMustBeString: boolean =
+          typeof originalStat === "string";
+        const originalValueIfEmptyInput: number | string = input
+          ? input
+          : originalStat;
+        const inputIsANumber: boolean = !isNaN(Number(input));
+        const numberOrString: number | string = inputIsANumber
           ? Number(originalValueIfEmptyInput)
           : originalStat;
-        const numberStatIsANumber = numberOrString;
-        const newValue = playerStatMustBeString
+        const newValue: number | string = playerStatMustBeString
           ? originalValueIfEmptyInput
-          : numberStatIsANumber;
+          : numberOrString;
         //Execution
         dispatch({
           type: "editOff",

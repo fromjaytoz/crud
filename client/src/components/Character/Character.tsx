@@ -68,7 +68,7 @@ const Character: React.FC<CharacterInterface> = ({
       console.log(err);
     }
   };
-  const dispatchOnEvent = (dispatch: React.Dispatch<any>) => {
+  const dispatchOnEvent = (dispatch: React.Dispatch<{}>) => {
     dispatch({ type: "editOn", dispatch: dispatch });
   };
 
