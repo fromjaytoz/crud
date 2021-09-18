@@ -31,29 +31,29 @@ const Character: React.FC<CharacterInterface> = ({
   };
   const reducer = (state: any, action: any) => {
     switch (action.type) {
-      case "unclicked":
+      case "editOn":
         console.log(state);
         return {
           ...state,
           renderEditComponent: (
             <input
-              onChange={(e) => {
-                const valueIsString = typeof state.value === "string";
+              value={state.value}
+              onChange={(e) => e.target.value}
+              onBlur={async (e) => {
+                const playerStatMustBeString = typeof state.value === "string";
                 const whatUserTyped = e.target.value;
-                const typedAnEmptyString = whatUserTyped
+                const notAnEmptyString = whatUserTyped.length
                   ? whatUserTyped
                   : state.value;
-                state.value = valueIsString
-                  ? whatUserTyped
-                  : Number(
-                      isNaN(Number(whatUserTyped))
-                        ? state.value
-                        : typedAnEmptyString
-                    );
-              }}
-              onBlur={async (e) => {
+                const numberStatIsANumber = Number(
+                  isNaN(Number(whatUserTyped)) ? state.value : notAnEmptyString
+                );
+                //Execution
+                state.value = playerStatMustBeString
+                  ? notAnEmptyString
+                  : numberStatIsANumber;
                 console.log(state.value);
-                action.dispatch({ type: "clicked", payload: state.value });
+                action.dispatch({ type: "editOff", payload: state.value });
               }}
               onKeyUp={(e) => {
                 e.keyCode === 13 && e.currentTarget.blur();
@@ -63,7 +63,7 @@ const Character: React.FC<CharacterInterface> = ({
             ></input>
           ),
         };
-      case "clicked":
+      case "editOff":
         return { ...state, renderEditComponent: <span>{action.payload}</span> };
     }
   };
@@ -85,7 +85,7 @@ const Character: React.FC<CharacterInterface> = ({
     }
   };
   const dispatchOnEvent = (dispatch: React.Dispatch<any>) => {
-    dispatch({ type: "unclicked", dispatch: dispatch });
+    dispatch({ type: "editOn", dispatch: dispatch });
   };
 
   return (
