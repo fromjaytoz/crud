@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
-  "mongodb+srv://OC:12345@crud.wmgom.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "mongodb+srv://OC:12345@crud.wmgom.mongodb.net/ASWorld?retryWrites=true&w=majority",
   { useNewUrlParser: true }
 );
 
