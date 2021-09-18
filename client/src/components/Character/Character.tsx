@@ -1,14 +1,11 @@
 import React, { useReducer, useEffect } from "react";
 import CharacterInterface from "../../interfaces/CharacterInterface";
-import {
-  Header,
-  RegularText
-} from "../../styled/styled"
+import { Header, RegularText } from "../../styled/styled";
 import axios from "axios";
 
 interface AttributeState {
   value: number | string;
-  render: any;
+  renderEditComponent: HTMLInputElement;
   clicked: boolean;
 }
 
@@ -28,7 +25,7 @@ const Character: React.FC<CharacterInterface> = ({
   const initialState = (attribute: number | string) => {
     return {
       value: attribute,
-      render: <span>{attribute}</span>,
+      renderEditComponent: <span>{attribute}</span>,
       clicked: false,
     };
   };
@@ -38,17 +35,21 @@ const Character: React.FC<CharacterInterface> = ({
         console.log(state);
         return {
           ...state,
-          render: (
+          renderEditComponent: (
             <input
               onChange={(e) => {
                 const valueIsString = typeof state.value === "string";
-                const inputValue = e.target.value;
+                const whatUserTyped = e.target.value;
+                const typedAnEmptyString = whatUserTyped
+                  ? whatUserTyped
+                  : state.value;
                 state.value = valueIsString
-                  ? inputValue
+                  ? whatUserTyped
                   : Number(
-                      isNaN(Number(inputValue)) ? state.value : inputValue
+                      isNaN(Number(whatUserTyped))
+                        ? state.value
+                        : typedAnEmptyString
                     );
-                console.log(state);
               }}
               onBlur={async (e) => {
                 console.log(state.value);
@@ -57,11 +58,13 @@ const Character: React.FC<CharacterInterface> = ({
               onKeyUp={(e) => {
                 e.keyCode === 13 && e.currentTarget.blur();
               }}
+              onMouseOver={(e) => e.currentTarget.focus()}
+              placeholder={`Changing '${state.value}'`}
             ></input>
           ),
         };
       case "clicked":
-        return { ...state, render: <span>{action.payload}</span> };
+        return { ...state, renderEditComponent: <span>{action.payload}</span> };
     }
   };
   const [nameState, nameDispatch] = useReducer(reducer, initialState(name));
@@ -81,22 +84,25 @@ const Character: React.FC<CharacterInterface> = ({
       console.log(err);
     }
   };
+  const dispatchOnEvent = (dispatch: React.Dispatch<any>) => {
+    dispatch({ type: "unclicked", dispatch: dispatch });
+  };
 
   return (
     <div>
       <Header
         onClick={() => {
-          nameDispatch({ type: "unclicked", dispatch: nameDispatch });
+          dispatchOnEvent(nameDispatch);
         }}
       >
-        {nameState.render}
+        {nameState.renderEditComponent}
       </Header>
       <RegularText
         onClick={() => {
-          strengthDispatch({ type: "unclicked", dispatch: strengthDispatch });
+          dispatchOnEvent(strengthDispatch);
         }}
       >
-        Strength:{strengthState?.render}
+        Strength:{strengthState?.renderEditComponent}
       </RegularText>
       <RegularText>Agility:{agility}</RegularText>
       <RegularText>Intelligence:{intelligence}</RegularText>
