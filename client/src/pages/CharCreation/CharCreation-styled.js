@@ -28,7 +28,7 @@ export const TextInput = styled.input`
 `
 
 export const AvatarContainer = styled.div`
-    width: 160px;
+    width: 97.4%;
     height: auto;
 `
 
@@ -57,20 +57,9 @@ export const SkillsContainer = styled.div`
     grid-area: skills;
 `
 
-export const WeaponPointsContainer = styled.div`
+export const PointsContainer = styled.div`
     height: auto;
-    grid-area: weapon-points;
+    grid-area: ${({ga}) => ga };
     margin-top: 48px;
-`
-
-export const AttributePointsContainer = styled.div`
-    height: auto;
-    grid-area: attribute-points;
-    margin-top: 48px;
-`
-
-export const SkillPointsContainer = styled.div`
-    height: auto;
-    grid-area: skill-points;
-    margin-top: 48px;
+    text-align: center;
 `

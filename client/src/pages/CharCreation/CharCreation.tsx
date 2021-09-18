@@ -14,9 +14,7 @@ import {
   LineBreak,
   ProficienciesContainer,
   SkillsContainer,
-  WeaponPointsContainer,
-  AttributePointsContainer,
-  SkillPointsContainer,
+  PointsContainer,
 } from "./CharCreation-styled"
 import {
   RegularText,
@@ -60,7 +58,11 @@ const CharCreation: React.FC = () => {
         <LineBreak />
       </CharacterLevelContainer>
       <form
-      style={{gridArea: "avatar"}}
+      style={{
+        gridArea: "avatar",
+        display: "flex",
+        flexDirection: "column",
+      }}
       onSubmit={(e) => sendStatsToServer(e)}>
         <label>Character Name</label>
         <input
@@ -69,9 +71,11 @@ const CharCreation: React.FC = () => {
             setName(e.target.value);
           }}
         ></input>
+        <br />
         <AvatarContainer>
           <AvatarImage src={avatar} alt={"avatar"}/>
         </AvatarContainer>
+        <br/>
         <label>Strength</label>
         <input
           value={str || ""}
@@ -115,15 +119,21 @@ const CharCreation: React.FC = () => {
       <SkillsContainer>
         <RegularText>Bibendum ut tristique et egestas quis ipsum. Id porta nibh venenatis cras sed felis eget velit. Ut tristique et egestas quis. Nunc scelerisque viverra mauris in. Commodo elit at imperdiet dui. Volutpat est velit egestas dui</RegularText>
       </SkillsContainer>
-      <WeaponPointsContainer>
+      <PointsContainer
+        ga={"weapon-points"}
+      >
         <RegularText>Weapon Points: 0</RegularText>
-      </WeaponPointsContainer>
-      <AttributePointsContainer>
+      </PointsContainer>
+      <PointsContainer
+        ga={"attribute-points"}
+      >
         <RegularText>Attribute Points: 0</RegularText>
-      </AttributePointsContainer>
-      <SkillPointsContainer>
+      </PointsContainer>
+      <PointsContainer
+        ga={"skill-points"}
+      >
         <RegularText>Skill Points: 0</RegularText>
-      </SkillPointsContainer>
+      </PointsContainer>
     </CharCreationContainer>
   );
 };
