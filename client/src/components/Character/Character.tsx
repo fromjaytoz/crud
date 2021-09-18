@@ -2,10 +2,11 @@ import React, { useReducer, useEffect } from "react";
 import CharacterInterface from "../../interfaces/CharacterInterface";
 import { Header, RegularText } from "../../styled/styled";
 import axios from "axios";
+import StatEditor from "../StatEditor/StatEditor";
 
 interface AttributeState {
   value: number | string;
-  renderEditComponent: HTMLInputElement;
+  renderStatEditor: HTMLInputElement;
   clicked: boolean;
 }
 
@@ -25,51 +26,30 @@ const Character: React.FC<CharacterInterface> = ({
   const initialState = (attribute: number | string) => {
     return {
       value: attribute,
-      renderEditComponent: <span>{attribute}</span>,
+      renderStatEditor: <span>{attribute}</span>,
       clicked: false,
     };
   };
-  const reducer = (state: any, action: any) => {
+  const statEditReducer = (state: any, action: any) => {
     switch (action.type) {
       case "editOn":
         console.log(state);
         return {
           ...state,
-          renderEditComponent: (
-            <input
-              value={state.value}
-              onChange={(e) => e.target.value}
-              onBlur={async (e) => {
-                const playerStatMustBeString = typeof state.value === "string";
-                const whatUserTyped = e.target.value;
-                const notAnEmptyString = whatUserTyped.length
-                  ? whatUserTyped
-                  : state.value;
-                const numberStatIsANumber = Number(
-                  isNaN(Number(whatUserTyped)) ? state.value : notAnEmptyString
-                );
-                //Execution
-                state.value = playerStatMustBeString
-                  ? notAnEmptyString
-                  : numberStatIsANumber;
-                console.log(state.value);
-                action.dispatch({ type: "editOff", payload: state.value });
-              }}
-              onKeyUp={(e) => {
-                e.keyCode === 13 && e.currentTarget.blur();
-              }}
-              onMouseOver={(e) => e.currentTarget.focus()}
-              placeholder={`Changing '${state.value}'`}
-            ></input>
+          renderStatEditor: (
+            <StatEditor originalStat={state.value} dispatch={action.dispatch} />
           ),
         };
       case "editOff":
-        return { ...state, renderEditComponent: <span>{action.payload}</span> };
+        return { ...state, renderStatEditor: <span>{action.payload}</span> };
     }
   };
-  const [nameState, nameDispatch] = useReducer(reducer, initialState(name));
+  const [nameState, nameDispatch] = useReducer(
+    statEditReducer,
+    initialState(name)
+  );
   const [strengthState, strengthDispatch] = useReducer(
-    reducer,
+    statEditReducer,
     initialState(strength)
   );
 
@@ -95,14 +75,14 @@ const Character: React.FC<CharacterInterface> = ({
           dispatchOnEvent(nameDispatch);
         }}
       >
-        {nameState.renderEditComponent}
+        {nameState.renderStatEditor}
       </Header>
       <RegularText
         onClick={() => {
           dispatchOnEvent(strengthDispatch);
         }}
       >
-        Strength:{strengthState?.renderEditComponent}
+        Strength:{strengthState?.renderStatEditor}
       </RegularText>
       <RegularText>Agility:{agility}</RegularText>
       <RegularText>Intelligence:{intelligence}</RegularText>
