@@ -7,13 +7,21 @@ import avatar from "../../assets/avatar.png"
 
 import {
   CharCreationContainer,
+  CharacterLevelContainer,
   CharCreationForm,
   AvatarContainer,
   AvatarImage,
-  Button,
-  LineBreak
+  LineBreak,
+  ProficienciesContainer,
+  SkillsContainer,
+  WeaponPointsContainer,
+  AttributePointsContainer,
+  SkillPointsContainer,
 } from "./CharCreation-styled"
-import { RegularText } from "../../styled/styled";
+import {
+  RegularText,
+  Button
+} from "../../styled/styled";
 
 const CharCreation: React.FC = () => {
   const [name, setName] = useState("");
@@ -44,14 +52,16 @@ const CharCreation: React.FC = () => {
 
   return (
     <CharCreationContainer data-testid="char-creation">
-      <div >
+      <CharacterLevelContainer>
         <RegularText>Level: 1</RegularText>
         <RegularText>Health: 44/44</RegularText>
         <RegularText>Experience: 134</RegularText>
         <RegularText>Next level at: 600</RegularText>
         <LineBreak />
-      </div>
-      <form onSubmit={(e) => sendStatsToServer(e)}>
+      </CharacterLevelContainer>
+      <form
+      style={{gridArea: "avatar"}}
+      onSubmit={(e) => sendStatsToServer(e)}>
         <label>Character Name</label>
         <input
           value={name || ""}
@@ -99,9 +109,21 @@ const CharCreation: React.FC = () => {
         w={"auto"}
         type="submit">Submit</Button>
       </form>
-      <div>
-        <Button>+</Button>
-      </div>
+      <ProficienciesContainer>
+        <RegularText>Quisque id diam vel quam elementum pulvinar etiam. Luctus accumsan tortor Id aliquet lectus proin nibh nisl</RegularText>
+      </ProficienciesContainer>
+      <SkillsContainer>
+        <RegularText>Bibendum ut tristique et egestas quis ipsum. Id porta nibh venenatis cras sed felis eget velit. Ut tristique et egestas quis. Nunc scelerisque viverra mauris in. Commodo elit at imperdiet dui. Volutpat est velit egestas dui</RegularText>
+      </SkillsContainer>
+      <WeaponPointsContainer>
+        <RegularText>Weapon Points: 0</RegularText>
+      </WeaponPointsContainer>
+      <AttributePointsContainer>
+        <RegularText>Attribute Points: 0</RegularText>
+      </AttributePointsContainer>
+      <SkillPointsContainer>
+        <RegularText>Skill Points: 0</RegularText>
+      </SkillPointsContainer>
     </CharCreationContainer>
   );
 };

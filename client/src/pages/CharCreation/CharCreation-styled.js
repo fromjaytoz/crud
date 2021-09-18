@@ -5,11 +5,17 @@ export const CharCreationContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 200px 200px 200px;
     grid-template-rows: auto;
     grid-template-areas: 
-    "level avatar header"
-    "proficiencies skills";
+    "level avatar ."
+    "proficiencies avatar skills"
+    "weapon-points attribute-points skill-points";
+`
+
+export const CharacterLevelContainer = styled.div`
+    height: auto;
+    grid-area: level;
 `
 
 export const CharCreationForm = styled.form`
@@ -32,39 +38,39 @@ export const AvatarImage = styled.img`
     border: 2.8px solid #64565B;
 `
 
-export const Button = styled.button`
-    width: 29.4px;
-    width: ${({w}) => w};
-    height: 29.4px;
-    padding: 1.8px 7.4px;
-
-    font-size: 16px;
-    font-family: 'Source Serif Pro', serif;
-    text-align: center;
-    color: #EEEEEE;
-    background: radial-gradient(50% 50% at 50% 50%, #6F6167 0%, #4D4448 100%);
-    border: 1.4px solid #241F22;
-    border-radius: 2.4px;
-    box-shadow: 0.8px 0.8px 4px rgba(0, 0, 0, 0.25), inset -2.4px -2.4px 4px rgba(0, 0, 0, 0.25);
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    transition: 0.1s;
-    
-    :hover {
-        cursor: pointer;
-        box-shadow: 1.4px 1.4px 4px rgba(0, 0, 0, 0.25), inset -2.4px -2.4px 4px rgba(0, 0, 0, 0.25);
-        padding: 2.8px 8.4px;
-        filter: brightness(110.4%);
-    }
-`
-
 export const LineBreak = styled.div`
     width: 100%;
     margin-top: 24px;
+    margin-bottom: 40px;
     padding:4px 0;
     border-bottom: 0.8px solid white;
     border-top: 0.8px solid white;
+`
+
+export const ProficienciesContainer = styled.div`
+    height: auto;
+    grid-area: proficiencies;
+`
+
+export const SkillsContainer = styled.div`
+    height: auto;
+    grid-area: skills;
+`
+
+export const WeaponPointsContainer = styled.div`
+    height: auto;
+    grid-area: weapon-points;
+    margin-top: 48px;
+`
+
+export const AttributePointsContainer = styled.div`
+    height: auto;
+    grid-area: attribute-points;
+    margin-top: 48px;
+`
+
+export const SkillPointsContainer = styled.div`
+    height: auto;
+    grid-area: skill-points;
+    margin-top: 48px;
 `

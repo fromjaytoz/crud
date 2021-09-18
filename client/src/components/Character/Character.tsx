@@ -2,7 +2,8 @@ import React, { useReducer, useEffect } from "react";
 import CharacterInterface from "../../interfaces/CharacterInterface";
 import {
   Header,
-  RegularText
+  RegularText,
+  Button
 } from "../../styled/styled"
 import axios from "axios";
 
@@ -101,7 +102,10 @@ const Character: React.FC<CharacterInterface> = ({
       <RegularText>Agility:{agility}</RegularText>
       <RegularText>Intelligence:{intelligence}</RegularText>
       <RegularText m={"0 0 60px 0"}>Class:{charClass}</RegularText>
-      <button onClick={() => deleteChar(_id)}>Delete {_id}</button>
+      <Button
+        w={"auto"}
+        bg={"radial-gradient(50% 50% at 50% 50%, #E21D1D 0%, #821111 100%)"}
+      onClick={() => deleteChar(_id)}>Delete {_id}</Button>
     </div>
   );
 };

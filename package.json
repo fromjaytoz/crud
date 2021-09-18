@@ -7,7 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "cd client && yarn install && cd .. && cd server && yarn && install cd ..",
     "client": "cd client && yarn start",
-    "server": "cd server && nodemon start"
+    "server": "cd server && nodemon start",
+    "serverAltOption": "cd server && npx nodemon index"
+  },
+  "scriptsComments": {
+    "server": "Default option. Use if running on Windows",
+    "serverAltOption": "If yarn server fails, this may work. Especially if on OS X"
   },
   "author": "",
   "license": "ISC"
