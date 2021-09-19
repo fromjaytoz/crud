@@ -11,9 +11,7 @@ export const AppView = styled.div`
 
 export const NavBarContentContainer = styled.div`
     width: 88vw;
-
-    display: flex;
-    flex-direction: column;
+    max-width: 1300px;
 `
 
 export const ContentContainer = styled.div`

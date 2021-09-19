@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Header = styled.h1`
     font-size: 24px;
+    letter-spacing: 0.0012em;
 
     font-size: ${({fs}) => fs };
     font-weight: ${({fw}) => fw };
@@ -18,7 +19,8 @@ export const Header = styled.h1`
 `
 
 export const RegularText = styled.p`
-    font-size: 16.8px;
+    font-weight: 500;
+    letter-spacing: 0.0012em;
     margin: 0;
     padding: 0;
 
@@ -41,7 +43,7 @@ export const Button = styled.button`
     padding: 1.8px 7.4px;
     margin: ${({m}) => m};
 
-    font-size: 16px;
+    font-size: 18.8px;
     font-family: 'Source Serif Pro', serif;
     text-align: center;
     color: #EEEEEE;

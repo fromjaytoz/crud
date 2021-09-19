@@ -90,11 +90,11 @@ const Character: React.FC<CharacterInterface> = ({
           dispatchOnEvent(strengthDispatch);
         }}
       >
-        Strength:{strengthState?.renderStatEditor}
+        Strength: {strengthState?.renderStatEditor}
       </RegularText>
-      <RegularText>Agility:{agility}</RegularText>
-      <RegularText>Intelligence:{intelligence}</RegularText>
-      <RegularText m={"0 0 16px 0"}>Class:{charClass}</RegularText>
+      <RegularText>Agility: {agility}</RegularText>
+      <RegularText>Intelligence: {intelligence}</RegularText>
+      <RegularText m={"0 0 16px 0"}>Class: {charClass}</RegularText>
       <Button
         m={"0 0 60px 0"}
         w={"auto"}
