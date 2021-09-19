@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useState } from "react";
 import CharacterInterface from "../../interfaces/CharacterInterface";
 import {
   Header,
@@ -6,16 +6,17 @@ import {
   Button
 } from "../../styled/styled"
 import axios from "axios";
+import StatEditor from "../StatEditor/StatEditor";
 
 interface AttributeState {
   value: number | string;
-  render: any;
+  renderStatEditor: HTMLInputElement;
   clicked: boolean;
 }
 
 interface ReducerAction {
   type: string;
-  payload: number;
+  payload: number | string;
 }
 
 const Character: React.FC<CharacterInterface> = ({
@@ -29,45 +30,34 @@ const Character: React.FC<CharacterInterface> = ({
   const initialState = (attribute: number | string) => {
     return {
       value: attribute,
-      render: <span>{attribute}</span>,
+      renderStatEditor: <span>{attribute}</span>,
       clicked: false,
     };
   };
-  const reducer = (state: any, action: any) => {
+  const statEditReducer = (state: any, action: any) => {
     switch (action.type) {
-      case "unclicked":
+      case "editOn":
         console.log(state);
         return {
           ...state,
-          render: (
-            <input
-              onChange={(e) => {
-                const valueIsString = typeof state.value === "string";
-                const inputValue = e.target.value;
-                state.value = valueIsString
-                  ? inputValue
-                  : Number(
-                      isNaN(Number(inputValue)) ? state.value : inputValue
-                    );
-                console.log(state);
-              }}
-              onBlur={async (e) => {
-                console.log(state.value);
-                action.dispatch({ type: "clicked", payload: state.value });
-              }}
-              onKeyUp={(e) => {
-                e.keyCode === 13 && e.currentTarget.blur();
-              }}
-            ></input>
+          renderStatEditor: (
+            <StatEditor originalStat={state.value} dispatch={action.dispatch} />
           ),
         };
-      case "clicked":
-        return { ...state, render: <span>{action.payload}</span> };
+      case "editOff":
+        return {
+          ...state,
+          renderStatEditor: <span>{action.payload}</span>,
+          value: action.payload,
+        };
     }
   };
-  const [nameState, nameDispatch] = useReducer(reducer, initialState(name));
+  const [nameState, nameDispatch] = useReducer(
+    statEditReducer,
+    initialState(name)
+  );
   const [strengthState, strengthDispatch] = useReducer(
-    reducer,
+    statEditReducer,
     initialState(strength)
   );
 
@@ -82,22 +72,25 @@ const Character: React.FC<CharacterInterface> = ({
       console.log(err);
     }
   };
+  const dispatchOnEvent = (dispatch: React.Dispatch<{}>) => {
+    dispatch({ type: "editOn", dispatch: dispatch });
+  };
 
   return (
     <div>
       <Header
         onClick={() => {
-          nameDispatch({ type: "unclicked", dispatch: nameDispatch });
+          dispatchOnEvent(nameDispatch);
         }}
       >
-        {nameState.render}
+        {nameState.renderStatEditor}
       </Header>
       <RegularText
         onClick={() => {
-          strengthDispatch({ type: "unclicked", dispatch: strengthDispatch });
+          dispatchOnEvent(strengthDispatch);
         }}
       >
-        Strength:{strengthState?.render}
+        Strength:{strengthState?.renderStatEditor}
       </RegularText>
       <RegularText>Agility:{agility}</RegularText>
       <RegularText>Intelligence:{intelligence}</RegularText>
