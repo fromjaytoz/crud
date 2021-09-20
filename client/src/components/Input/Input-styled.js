@@ -24,7 +24,7 @@ export const TextInput = styled.input`
     border-radius: 0.8px;
     margin: 2.8px 1.8px;
 
-    width: 96%;
+    width: 91.4%;
 
     box-shadow: 0px 0px 2.4px 1.08px #000000 inset;
     opacity: 0.98;

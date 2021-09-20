@@ -41,23 +41,36 @@ export const FormLabel = styled.label`
 `
 
 export const AvatarContainer = styled.div`
-    width: 97.4%;
+    width: 100%;
     height: auto;
 
     margin-bottom: 36px;
+    background: radial-gradient(72.62% 50% at 50% 50%, #F2EFF0 0%, #584E53 100%, #584E53 100%);
+    padding: 2.8px 1.8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 1.4px;
+    border: none;
 `
 
 export const AvatarImage = styled.img`
-    width: 100%;
-    height: 100%;
-    border: 2.8px solid #64565B;
+    padding: 0;
+    margin: 0;
+    width: 98.4%;
+    height: 98.4%;
+    border: none;
+    border-radius: 2.8px;
+    box-shadow: 0px 0px 2.4px 1.08px #000000 inset;
 `
 
 export const LineBreak = styled.div`
     width: 100%;
     margin-top: 24px;
     margin-bottom: 40px;
-    padding:4px 0;
+    padding: 4px 0;
     border-bottom: 0.8px solid white;
     border-top: 0.8px solid white;
 `
