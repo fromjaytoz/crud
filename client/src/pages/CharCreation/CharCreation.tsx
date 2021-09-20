@@ -2,8 +2,8 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import CharacterInterface from "../../interfaces/CharacterInterface";
-import avatar from "../../assets/avatar.png"
+import CharacterInterface from "../../components/Character/interfaces/CharacterInterface";
+import avatar from "../../assets/avatar.png";
 
 import {
   CharCreationContainer,
@@ -11,8 +11,8 @@ import {
   AvatarContainer,
   AvatarImage,
   Button,
-  LineBreak
-} from "./CharCreation-styled"
+  LineBreak,
+} from "./CharCreation-styled";
 import { RegularText } from "../../styled/styled";
 
 const CharCreation: React.FC = () => {
@@ -44,7 +44,7 @@ const CharCreation: React.FC = () => {
 
   return (
     <CharCreationContainer data-testid="char-creation">
-      <div >
+      <div>
         <RegularText>Level: 1</RegularText>
         <RegularText>Health: 44/44</RegularText>
         <RegularText>Experience: 134</RegularText>
@@ -60,7 +60,7 @@ const CharCreation: React.FC = () => {
           }}
         ></input>
         <AvatarContainer>
-          <AvatarImage src={avatar} alt={"avatar"}/>
+          <AvatarImage src={avatar} alt={"avatar"} />
         </AvatarContainer>
         <label>Strength</label>
         <input
@@ -69,7 +69,7 @@ const CharCreation: React.FC = () => {
             setStr(e.target.value);
           }}
         ></input>
-        <br/>
+        <br />
         <label>Agility</label>
         <input
           value={agi || ""}
@@ -77,7 +77,7 @@ const CharCreation: React.FC = () => {
             setAgi(e.target.value);
           }}
         ></input>
-        <br/>
+        <br />
         <label>Intelligence</label>
         <input
           value={int || ""}
@@ -86,7 +86,7 @@ const CharCreation: React.FC = () => {
             console.log(int);
           }}
         ></input>
-        <br/>
+        <br />
         <label>Class</label>
         <input
           value={charClass || ""}
@@ -94,10 +94,10 @@ const CharCreation: React.FC = () => {
             setCharClass(e.target.value);
           }}
         ></input>
-        <br/>
-        <Button
-        w={"auto"}
-        type="submit">Submit</Button>
+        <br />
+        <Button w={"auto"} type="submit">
+          Submit
+        </Button>
       </form>
       <div>
         <Button>+</Button>

@@ -1,10 +1,11 @@
 import React, { useReducer } from "react";
-import CharacterInterface from "../../interfaces/CharacterInterface";
+import CharacterInterface from "./interfaces/CharacterInterface";
 import { Header, RegularText } from "../../styled/styled";
 import axios from "axios";
 import StatEditor from "../StatEditor/StatEditor";
+import useAttributes from "./hooks/useAttributes.hook";
 
-interface CharAttributeState {
+export interface CharAttributeState {
   value: number | string;
   renderStatEditor: HTMLInputElement;
   clicked: boolean;
@@ -51,9 +52,7 @@ const Character: React.FC<CharacterInterface> = ({
         };
     }
   };
-  const [nameState, nameDispatch] = useReducer<
-    (state: CharAttributeState, action: StatEditAction) => any
-  >(statEditReducer, initialState(name));
+  const { charName } = useAttributes({ name });
   const [strengthState, strengthDispatch] = useReducer<
     (state: CharAttributeState, action: StatEditAction) => any
   >(statEditReducer, initialState(strength));
@@ -83,10 +82,10 @@ const Character: React.FC<CharacterInterface> = ({
     <div>
       <Header
         onClick={() => {
-          dispatchOnEvent(nameDispatch);
+          dispatchOnEvent(charName.dispatch);
         }}
       >
-        {nameState.renderStatEditor}
+        {charName.state.renderStatEditor}
       </Header>
       <RegularText
         onClick={() => {
