@@ -49,6 +49,23 @@ app.delete("/deleteChar", async (req, res) => {
   await res.send(`${id} deleted!`);
 });
 
+app.put("/updateChar", async (req, res) => {
+  const newChar = req.body;
+  const id = req.body._id;
+  console.log(id);
+  try {
+    await Player.findById(id, (err, matchedChar) => {
+      console.log(matchedChar);
+      matchedChar.name = newChar.name;
+      console.log(matchedChar);
+      matchedChar.save();
+    });
+  } catch (err) {
+    console.log(err);
+  }
+  await res.send(`${id} updated!`);
+});
+
 app.get("/test", async (req, res) => {
   Player.find({ charClass: "Warrior" }, (err, result) => {
     res.send(result);

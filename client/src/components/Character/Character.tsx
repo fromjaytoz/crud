@@ -39,6 +39,15 @@ const Character: React.FC<CharacterInterface> = ({ _id, ...attributes }) => {
       console.log(err);
     }
   };
+  const updateChar = (character: CharacterInterface) => {
+    console.log(character);
+    try {
+      axios.put("http://localhost:3001/updateChar", character);
+      console.log(character._id + " updated");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const dispatchOnEvent = (dispatch: React.Dispatch<StatEditAction>) => {
     dispatch({ type: "editOn", dispatch: dispatch });
   };
@@ -82,6 +91,20 @@ const Character: React.FC<CharacterInterface> = ({ _id, ...attributes }) => {
         Class:{charClass.state.renderStatEditor}
       </RegularText>
       <button onClick={() => deleteChar(_id)}>Delete {_id}</button>
+      <button
+        onClick={() =>
+          updateChar({
+            name: charName.state.value,
+            strength: str.state.value,
+            agility: agi.state.value,
+            intelligence: int.state.value,
+            charClass: charClass.state.value,
+            _id: _id,
+          })
+        }
+      >
+        Update
+      </button>
     </div>
   );
 };
