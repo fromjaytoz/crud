@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React from "react";
 import CharacterInterface from "./interfaces/CharacterInterface";
 import { Header, RegularText } from "../../styled/styled";
 import axios from "axios";
