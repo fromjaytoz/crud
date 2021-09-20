@@ -1,17 +1,18 @@
-import React, { useState } from "react";
-
+import React, { ReactEventHandler, useState } from "react";
+import { StatEditAction } from "../Character/Character";
 interface StatEdit {
   originalStat: number | string;
-  dispatch: React.Dispatch<{}>;
+  dispatch: React.Dispatch<StatEditAction>;
 }
 
 const StatEditor: React.FC<StatEdit> = ({ originalStat, dispatch }) => {
   const [input, setInput] = useState(originalStat);
+  //This should eventually be a div with a display:inline or inline-flex
   return (
     <input
       value={input}
       onChange={(e) => setInput(e.target.value)}
-      onBlur={async (e) => {
+      onBlur={async () => {
         const playerStatMustBeString: boolean =
           typeof originalStat === "string";
         const originalValueIfEmptyInput: number | string = input
@@ -28,6 +29,7 @@ const StatEditor: React.FC<StatEdit> = ({ originalStat, dispatch }) => {
         dispatch({
           type: "editOff",
           payload: newValue || newValue === 0 ? newValue : originalStat,
+          dispatch: dispatch,
         });
       }}
       onKeyUp={(e) => {

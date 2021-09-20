@@ -1,18 +1,19 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer } from "react";
 import CharacterInterface from "../../interfaces/CharacterInterface";
 import { Header, RegularText } from "../../styled/styled";
 import axios from "axios";
 import StatEditor from "../StatEditor/StatEditor";
 
-interface AttributeState {
+interface CharAttributeState {
   value: number | string;
   renderStatEditor: HTMLInputElement;
   clicked: boolean;
 }
 
-interface ReducerAction {
+export interface StatEditAction {
   type: string;
-  payload: number | string;
+  payload?: number | string;
+  dispatch: React.Dispatch<StatEditAction>; //since we are passing the dispatch down to StatEdit
 }
 
 const Character: React.FC<CharacterInterface> = ({
@@ -30,10 +31,12 @@ const Character: React.FC<CharacterInterface> = ({
       clicked: false,
     };
   };
-  const statEditReducer = (state: any, action: any) => {
+  const statEditReducer = (
+    state: CharAttributeState,
+    action: StatEditAction
+  ) => {
     switch (action.type) {
       case "editOn":
-        console.log(state);
         return {
           ...state,
           renderStatEditor: (
@@ -48,14 +51,18 @@ const Character: React.FC<CharacterInterface> = ({
         };
     }
   };
-  const [nameState, nameDispatch] = useReducer(
-    statEditReducer,
-    initialState(name)
-  );
-  const [strengthState, strengthDispatch] = useReducer(
-    statEditReducer,
-    initialState(strength)
-  );
+  const [nameState, nameDispatch] = useReducer<
+    (state: CharAttributeState, action: StatEditAction) => any
+  >(statEditReducer, initialState(name));
+  const [strengthState, strengthDispatch] = useReducer<
+    (state: CharAttributeState, action: StatEditAction) => any
+  >(statEditReducer, initialState(strength));
+  const [agilityState, agilityDispatch] = useReducer<
+    (state: CharAttributeState, action: StatEditAction) => any
+  >(statEditReducer, initialState(strength));
+  const [intelligenceState, intelligenceDispatch] = useReducer<
+    (state: CharAttributeState, action: StatEditAction) => any
+  >(statEditReducer, initialState(strength));
 
   const deleteChar = (charId: string) => {
     try {
@@ -68,7 +75,7 @@ const Character: React.FC<CharacterInterface> = ({
       console.log(err);
     }
   };
-  const dispatchOnEvent = (dispatch: React.Dispatch<{}>) => {
+  const dispatchOnEvent = (dispatch: React.Dispatch<StatEditAction>) => {
     dispatch({ type: "editOn", dispatch: dispatch });
   };
 
@@ -88,8 +95,10 @@ const Character: React.FC<CharacterInterface> = ({
       >
         Strength:{strengthState?.renderStatEditor}
       </RegularText>
-      <RegularText>Agility:{agility}</RegularText>
-      <RegularText>Intelligence:{intelligence}</RegularText>
+      <RegularText>Agility:{agilityState.renderStatEditor}</RegularText>
+      <RegularText>
+        Intelligence:{intelligenceState.renderStatEditor}
+      </RegularText>
       <RegularText m={"0 0 60px 0"}>Class:{charClass}</RegularText>
       <button onClick={() => deleteChar(_id)}>Delete {_id}</button>
     </div>
