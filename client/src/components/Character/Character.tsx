@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useReducer, useState } from "react";
 import CharacterInterface from "../../interfaces/CharacterInterface";
 import {
@@ -5,61 +6,31 @@ import {
   RegularText,
   Button
 } from "../../styled/styled"
+=======
+import React from "react";
+import CharacterInterface from "./interfaces/CharacterInterface";
+import { Header, RegularText } from "../../styled/styled";
+>>>>>>> 492b9814f59efca1be42f15c23a791a5ce919770
 import axios from "axios";
-import StatEditor from "../StatEditor/StatEditor";
+import useAttributes from "./hooks/useAttributes";
 
-interface AttributeState {
+export interface CharAttributeState {
   value: number | string;
   renderStatEditor: HTMLInputElement;
   clicked: boolean;
 }
 
-interface ReducerAction {
+export interface StatEditAction {
   type: string;
-  payload: number | string;
+  payload?: number | string;
+  dispatch: React.Dispatch<StatEditAction>; //since we are passing the dispatch down to StatEdit
 }
 
-const Character: React.FC<CharacterInterface> = ({
-  agility,
-  charClass,
-  intelligence,
-  name,
-  strength,
-  _id,
-}) => {
-  const initialState = (attribute: number | string) => {
-    return {
-      value: attribute,
-      renderStatEditor: <span>{attribute}</span>,
-      clicked: false,
-    };
-  };
-  const statEditReducer = (state: any, action: any) => {
-    switch (action.type) {
-      case "editOn":
-        console.log(state);
-        return {
-          ...state,
-          renderStatEditor: (
-            <StatEditor originalStat={state.value} dispatch={action.dispatch} />
-          ),
-        };
-      case "editOff":
-        return {
-          ...state,
-          renderStatEditor: <span>{action.payload}</span>,
-          value: action.payload,
-        };
-    }
-  };
-  const [nameState, nameDispatch] = useReducer(
-    statEditReducer,
-    initialState(name)
-  );
-  const [strengthState, strengthDispatch] = useReducer(
-    statEditReducer,
-    initialState(strength)
-  );
+const Character: React.FC<CharacterInterface> = ({ _id, ...attributes }) => {
+  const { charName, str, agi, int, charClass } = useAttributes({
+    ...attributes,
+    _id,
+  });
 
   const deleteChar = (charId: string) => {
     try {
@@ -72,7 +43,7 @@ const Character: React.FC<CharacterInterface> = ({
       console.log(err);
     }
   };
-  const dispatchOnEvent = (dispatch: React.Dispatch<{}>) => {
+  const dispatchOnEvent = (dispatch: React.Dispatch<StatEditAction>) => {
     dispatch({ type: "editOn", dispatch: dispatch });
   };
 
@@ -80,16 +51,39 @@ const Character: React.FC<CharacterInterface> = ({
     <div>
       <Header
         onClick={() => {
-          dispatchOnEvent(nameDispatch);
+          dispatchOnEvent(charName.dispatch);
         }}
       >
-        {nameState.renderStatEditor}
+        {charName.state.renderStatEditor}
       </Header>
       <RegularText
         onClick={() => {
-          dispatchOnEvent(strengthDispatch);
+          dispatchOnEvent(str.dispatch);
         }}
       >
+        Strength:{str.state.renderStatEditor}
+      </RegularText>
+      <RegularText
+        onClick={() => {
+          dispatchOnEvent(agi.dispatch);
+        }}
+      >
+        Agility:{agi.state.renderStatEditor}
+      </RegularText>
+      <RegularText
+        onClick={() => {
+          dispatchOnEvent(int.dispatch);
+        }}
+      >
+        Intelligence:{int.state.renderStatEditor}
+      </RegularText>
+      <RegularText
+        m={"0 0 60px 0"}
+        onClick={() => {
+          dispatchOnEvent(charClass.dispatch);
+        }}
+      >
+<<<<<<< HEAD
         Strength: {strengthState?.renderStatEditor}
       </RegularText>
       <RegularText>Agility: {agility}</RegularText>
@@ -100,6 +94,11 @@ const Character: React.FC<CharacterInterface> = ({
         w={"auto"}
         bg={"radial-gradient(50% 50% at 50% 50%, #E21D1D 0%, #821111 100%)"}
       onClick={() => deleteChar(_id)}>Delete {_id}</Button>
+=======
+        Class:{charClass.state.renderStatEditor}
+      </RegularText>
+      <button onClick={() => deleteChar(_id)}>Delete {_id}</button>
+>>>>>>> 492b9814f59efca1be42f15c23a791a5ce919770
     </div>
   );
 };

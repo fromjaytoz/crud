@@ -2,8 +2,8 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import CharacterInterface from "../../interfaces/CharacterInterface";
-import avatar from "../../assets/avatar.png"
+import CharacterInterface from "../../components/Character/interfaces/CharacterInterface";
+import avatar from "../../assets/avatar.png";
 
 import Input from "../../components/Input/Input";
 
@@ -70,7 +70,7 @@ const CharCreation: React.FC = () => {
           }}
         ></Input>
         <AvatarContainer>
-          <AvatarImage src={avatar} alt={"avatar"}/>
+          <AvatarImage src={avatar} alt={"avatar"} />
         </AvatarContainer>
         <FormLabel>Strength</FormLabel>
         <Input
