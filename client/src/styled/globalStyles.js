@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     background: #292527;
     font-family: 'Source Serif Pro', serif;
+    font-size: 17.4px;
     color: white;
   }
 `;

@@ -5,15 +5,23 @@ import { useHistory } from "react-router-dom";
 import CharacterInterface from "../../components/Character/interfaces/CharacterInterface";
 import avatar from "../../assets/avatar.png";
 
+import Input from "../../components/Input/Input";
+
 import {
   CharCreationContainer,
+  CharacterLevelContainer,
   CharCreationForm,
+  FormLabel,
   AvatarContainer,
   AvatarImage,
-  Button,
   LineBreak,
-} from "./CharCreation-styled";
-import { RegularText } from "../../styled/styled";
+  ProficienciesContainer,
+  SkillsContainer,
+} from "./CharCreation-styled"
+import {
+  RegularText,
+  Button
+} from "../../styled/styled";
 
 const CharCreation: React.FC = () => {
   const [name, setName] = useState("");
@@ -44,64 +52,65 @@ const CharCreation: React.FC = () => {
 
   return (
     <CharCreationContainer data-testid="char-creation">
-      <div>
+      <CharacterLevelContainer>
         <RegularText>Level: 1</RegularText>
         <RegularText>Health: 44/44</RegularText>
         <RegularText>Experience: 134</RegularText>
         <RegularText>Next level at: 600</RegularText>
         <LineBreak />
-      </div>
-      <form onSubmit={(e) => sendStatsToServer(e)}>
-        <label>Character Name</label>
-        <input
+      </CharacterLevelContainer>
+      <CharCreationForm
+      onSubmit={(e:React.FormEvent<HTMLFormElement>) => sendStatsToServer(e)}>
+        <FormLabel
+        >Character Name</FormLabel>
+        <Input
           value={name || ""}
-          onChange={(e) => {
+          onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
             setName(e.target.value);
           }}
-        ></input>
+        ></Input>
         <AvatarContainer>
           <AvatarImage src={avatar} alt={"avatar"} />
         </AvatarContainer>
-        <label>Strength</label>
-        <input
+        <FormLabel>Strength</FormLabel>
+        <Input
           value={str || ""}
-          onChange={(e) => {
+          onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
             setStr(e.target.value);
           }}
-        ></input>
-        <br />
-        <label>Agility</label>
-        <input
+        ></Input>
+        <FormLabel>Agility</FormLabel>
+        <Input
           value={agi || ""}
-          onChange={(e) => {
+          onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
             setAgi(e.target.value);
           }}
-        ></input>
-        <br />
-        <label>Intelligence</label>
-        <input
+        ></Input>
+        <FormLabel>Intelligence</FormLabel>
+        <Input
           value={int || ""}
-          onChange={(e) => {
+          onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
             setInt(e.target.value);
             console.log(int);
           }}
-        ></input>
-        <br />
-        <label>Class</label>
-        <input
+        ></Input>
+        <FormLabel>Class</FormLabel>
+        <Input 
           value={charClass || ""}
-          onChange={(e) => {
+          onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
             setCharClass(e.target.value);
           }}
-        ></input>
-        <br />
-        <Button w={"auto"} type="submit">
-          Submit
-        </Button>
-      </form>
-      <div>
-        <Button>+</Button>
-      </div>
+        />
+        <Button
+        w={"auto"}
+        type="submit">Submit</Button>
+      </CharCreationForm>
+      <ProficienciesContainer>
+        <RegularText>Quisque id diam vel quam elementum pulvinar etiam. Luctus accumsan tortor Id aliquet lectus proin nibh nisl</RegularText>
+      </ProficienciesContainer>
+      <SkillsContainer>
+        <RegularText>Bibendum ut tristique et egestas quis ipsum. Id porta nibh venenatis cras sed felis eget velit. Ut tristique et egestas quis. Nunc scelerisque viverra mauris in. Commodo elit at imperdiet dui. Volutpat est velit egestas dui</RegularText>
+      </SkillsContainer>
     </CharCreationContainer>
   );
 };
