@@ -1,5 +1,8 @@
-import React, { ReactEventHandler, useState } from "react";
+import React, { useState } from "react";
+
+//Interfaces
 import { StatEditAction } from "../Character/Character";
+
 interface StatEdit {
   originalStat: number | string;
   dispatch: React.Dispatch<StatEditAction>;

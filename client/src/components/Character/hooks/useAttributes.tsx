@@ -1,7 +1,9 @@
 import { useReducer } from "react";
+import StatEditor from "../../StatEditor/StatEditor";
+
+//Interfaces
 import { CharAttributeState, StatEditAction } from "../Character";
 import CharacterInterface from "../interfaces/CharacterInterface";
-import StatEditor from "../../StatEditor/StatEditor";
 
 const useAttributes = ({
   name,
