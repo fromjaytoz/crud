@@ -1,26 +1,15 @@
-<<<<<<< HEAD
-import React, { useReducer, useState } from "react";
-import CharacterInterface from "../../interfaces/CharacterInterface";
-import {
-  Header,
-  RegularText,
-  Button
-} from "../../styled/styled"
-=======
 import React from "react";
-<<<<<<< HEAD
-import CharacterInterface from "./interfaces/CharacterInterface";
-import { Header, RegularText } from "../../styled/styled";
->>>>>>> 492b9814f59efca1be42f15c23a791a5ce919770
-=======
->>>>>>> 577f6a1dd383a9109dad97cd203fe25bdc73d302
 import axios from "axios";
 //Hooks
 import useAttributes from "./hooks/useAttributes";
 //Interfaces
 import CharacterInterface from "./interfaces/CharacterInterface";
 //Styling
-import { Header, RegularText } from "../../styled/styled";
+import {
+  Header,
+  RegularText,
+  Button
+} from "../../styled/styled"
 
 export interface CharAttributeState {
   value: number | string;
@@ -94,22 +83,12 @@ const Character: React.FC<CharacterInterface> = ({ _id, ...attributes }) => {
           dispatchOnEvent(charClass.dispatch);
         }}
       >
-<<<<<<< HEAD
-        Strength: {strengthState?.renderStatEditor}
-      </RegularText>
-      <RegularText>Agility: {agility}</RegularText>
-      <RegularText>Intelligence: {intelligence}</RegularText>
-      <RegularText m={"0 0 16px 0"}>Class: {charClass}</RegularText>
+        </RegularText>
       <Button
         m={"0 0 60px 0"}
         w={"auto"}
         bg={"radial-gradient(50% 50% at 50% 50%, #E21D1D 0%, #821111 100%)"}
       onClick={() => deleteChar(_id)}>Delete {_id}</Button>
-=======
-        Class:{charClass.state.renderStatEditor}
-      </RegularText>
-      <button onClick={() => deleteChar(_id)}>Delete {_id}</button>
->>>>>>> 492b9814f59efca1be42f15c23a791a5ce919770
     </div>
   );
 };

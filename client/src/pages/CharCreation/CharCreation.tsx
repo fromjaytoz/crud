@@ -74,6 +74,7 @@ const CharCreation: React.FC = () => {
         </AvatarContainer>
         <FormLabel>Strength</FormLabel>
         <Input
+          d={"none"}
           value={str || ""}
           onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
             setStr(e.target.value);
@@ -81,6 +82,7 @@ const CharCreation: React.FC = () => {
         ></Input>
         <FormLabel>Agility</FormLabel>
         <Input
+          d={"none"}
           value={agi || ""}
           onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
             setAgi(e.target.value);
@@ -88,6 +90,7 @@ const CharCreation: React.FC = () => {
         ></Input>
         <FormLabel>Intelligence</FormLabel>
         <Input
+          d={"none"}
           value={int || ""}
           onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
             setInt(e.target.value);
@@ -96,6 +99,7 @@ const CharCreation: React.FC = () => {
         ></Input>
         <FormLabel>Class</FormLabel>
         <Input 
+          d={"none"}
           value={charClass || ""}
           onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
             setCharClass(e.target.value);

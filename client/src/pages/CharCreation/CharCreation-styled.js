@@ -6,7 +6,7 @@ export const CharCreationContainer = styled.div`
     justify-content: space-between;
     display: grid;
     grid-template-columns: 240px 240px 240px;
-    grid-template-rows: 428px 428px;
+    grid-template-rows: 428px auto;
     grid-template-areas: 
     "level avatar ."
     "proficiencies avatar skills";
@@ -32,7 +32,7 @@ export const CharCreationForm = styled.form`
     flex-direction: column;
     grid-area: avatar;
 
-    width: 240px;
+    width: auto;
     justify-self: center;
 `
 
