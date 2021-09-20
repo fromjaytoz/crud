@@ -11,8 +11,10 @@ import {
 
 //Types
 import {
-  EditableNumberStat,
-  EditableStringStat,
+  StringStatEditor,
+  NumberStatEditor,
+  StringStatReducer,
+  NumberStatReducer,
 } from "../types/CharacterTypes";
 
 const useAttributes = ({
@@ -32,7 +34,7 @@ const useAttributes = ({
   };
   const statEditReducer = (
     state: CharAttributeNumber | CharAttributeString,
-    action: StatEditAction //Since we are passing the dispatch down to StatEdit
+    action: StatEditAction /*<==Since we are passing the dispatch down to StatEdit*/
   ) => {
     switch (action.type) {
       case "editOn":
@@ -51,25 +53,17 @@ const useAttributes = ({
     }
   };
 
-  /*Please see the types Character folder for more information on my EditableStat types*/
-
-  const [nameState, nameDispatch]: EditableStringStat = useReducer<
-    (state: CharAttributeString, action: StatEditAction) => any
-  >(statEditReducer, initialState(name));
-  const [strengthState, strengthDispatch]: EditableNumberStat = useReducer<
-    (state: CharAttributeNumber, action: StatEditAction) => any
-  >(statEditReducer, initialState(strength));
-  const [agilityState, agilityDispatch]: EditableNumberStat = useReducer<
-    (state: CharAttributeNumber, action: StatEditAction) => any
-  >(statEditReducer, initialState(agility));
-  const [intelligenceState, intelligenceDispatch]: EditableNumberStat =
-    useReducer<(state: CharAttributeNumber, action: StatEditAction) => any>(
-      statEditReducer,
-      initialState(intelligence)
-    );
-  const [classState, classDispatch]: EditableStringStat = useReducer<
-    (state: CharAttributeString, action: StatEditAction) => any
-  >(statEditReducer, initialState(charClass));
+  /*Please see the types Character folder for more information on my StatEditor types*/
+  const [nameState, nameDispatch]: StringStatEditor =
+    useReducer<StringStatReducer>(statEditReducer, initialState(name));
+  const [strengthState, strengthDispatch]: NumberStatEditor =
+    useReducer<NumberStatReducer>(statEditReducer, initialState(strength));
+  const [agilityState, agilityDispatch]: NumberStatEditor =
+    useReducer<NumberStatReducer>(statEditReducer, initialState(agility));
+  const [intelligenceState, intelligenceDispatch]: NumberStatEditor =
+    useReducer<NumberStatReducer>(statEditReducer, initialState(intelligence));
+  const [classState, classDispatch]: StringStatEditor =
+    useReducer<StringStatReducer>(statEditReducer, initialState(charClass));
 
   return {
     charName: { state: nameState, dispatch: nameDispatch },
