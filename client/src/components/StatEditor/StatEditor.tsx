@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 
 //Interfaces
-import { StatEditAction } from "../Character/Character";
-
-interface StatEdit {
-  originalStat: number | string;
-  dispatch: React.Dispatch<StatEditAction>;
-}
+import { StatEdit } from "../Character/interfaces/CharacterInterfaces";
 
 const StatEditor: React.FC<StatEdit> = ({ originalStat, dispatch }) => {
   const [input, setInput] = useState(originalStat);

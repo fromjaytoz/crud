@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import CharacterInterface from "../../components/Character/interfaces/CharacterInterface";
+import { CharacterInterface } from "../../components/Character/interfaces/CharacterInterfaces";
 import avatar from "../../assets/avatar.png";
 
 import Input from "../../components/Input/Input";

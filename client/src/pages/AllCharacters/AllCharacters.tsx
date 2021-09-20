@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Character from "../../components/Character/Character";
-import CharacterInterface from "../../components/Character/interfaces/CharacterInterface";
+import { CharacterInterface } from "../../components/Character/interfaces/CharacterInterfaces";
 
 const AllCharacters: React.FC = () => {
   const [charList, setCharList] = useState<CharacterInterface[]>([]);

@@ -14,14 +14,14 @@ import {
 
 //Please add an interface when converting to TypeScript
 
-function Input({ value, onChange, d }: { value: any, onChange: any, d: any,}) {
+function Input({ value, onChange, d }: { value: any, onChange: any, d?: any }) {
   return (
     <TextInputSpacing>
       <TextInputTopContainer d={d}>
         <TextInputTopDesign src={inputTopDesign} />
       </TextInputTopContainer>
       <TextInputContainer>
-        <TextInput value={value} onChange={onChange}/>
+        <TextInput value={value} onChange={onChange} />
       </TextInputContainer>
       <TextInputBottomContainer d={d}>
         <TextInputBottomDesign src={inputBottomDesign} />
