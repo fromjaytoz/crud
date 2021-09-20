@@ -2,8 +2,12 @@ import { useReducer } from "react";
 import StatEditor from "../../StatEditor/StatEditor";
 
 //Interfaces
-import { CharAttributeState, StatEditAction } from "../Character";
-import CharacterInterface from "../interfaces/CharacterInterface";
+import {
+  CharacterInterface,
+  CharAttributeString,
+  CharAttributeNumber,
+  StatEditAction,
+} from "../interfaces/CharacterInterfaces";
 
 const useAttributes = ({
   name,
@@ -21,8 +25,8 @@ const useAttributes = ({
     };
   };
   const statEditReducer = (
-    state: CharAttributeState,
-    action: StatEditAction
+    state: CharAttributeNumber | CharAttributeString,
+    action: StatEditAction //Since we are passing the dispatch down to StatEdit
   ) => {
     switch (action.type) {
       case "editOn":
@@ -41,20 +45,24 @@ const useAttributes = ({
     }
   };
 
-  const [nameState, nameDispatch] = useReducer<
-    (state: CharAttributeState, action: StatEditAction) => any
-  >(statEditReducer, initialState(name));
+  const [nameState, nameDispatch]: [
+    nameState: CharAttributeString,
+    nameDispatch: React.Dispatch<StatEditAction>
+  ] = useReducer<(state: CharAttributeString, action: StatEditAction) => any>(
+    statEditReducer,
+    initialState(name)
+  );
   const [strengthState, strengthDispatch] = useReducer<
-    (state: CharAttributeState, action: StatEditAction) => any
+    (state: CharAttributeNumber, action: StatEditAction) => any
   >(statEditReducer, initialState(strength));
   const [agilityState, agilityDispatch] = useReducer<
-    (state: CharAttributeState, action: StatEditAction) => any
+    (state: CharAttributeNumber, action: StatEditAction) => any
   >(statEditReducer, initialState(agility));
   const [intelligenceState, intelligenceDispatch] = useReducer<
-    (state: CharAttributeState, action: StatEditAction) => any
+    (state: CharAttributeNumber, action: StatEditAction) => any
   >(statEditReducer, initialState(intelligence));
   const [classState, classDispatch] = useReducer<
-    (state: CharAttributeState, action: StatEditAction) => any
+    (state: CharAttributeString, action: StatEditAction) => any
   >(statEditReducer, initialState(charClass));
 
   return {

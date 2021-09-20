@@ -50,15 +50,19 @@ app.delete("/deleteChar", async (req, res) => {
 });
 
 app.put("/updateChar", async (req, res) => {
-  const newChar = req.body;
+  const { name, strength, agility, intelligence, charClass } = req.body;
   const id = req.body._id;
   console.log(id);
   try {
     await Player.findById(id, (err, matchedChar) => {
-      console.log(matchedChar);
-      matchedChar.name = newChar.name;
-      console.log(matchedChar);
+      matchedChar.name = name;
+      matchedChar.strength = strength;
+      matchedChar.agility = agility;
+      matchedChar.intelligence = intelligence;
+      matchedChar.charClass = charClass;
       matchedChar.save();
+      console.log(matchedChar);
+      console.log("Update Success!");
     });
   } catch (err) {
     console.log(err);

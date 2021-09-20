@@ -1,25 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 //Hooks
 import useAttributes from "./hooks/useAttributes";
 //Interfaces
-import CharacterInterface from "./interfaces/CharacterInterface";
+import {
+  CharacterInterface,
+  StatEditAction,
+} from "./interfaces/CharacterInterfaces";
 //Styling
 import { Header, RegularText } from "../../styled/styled";
 
-export interface CharAttributeState {
-  value: number | string;
-  renderStatEditor: HTMLInputElement;
-  clicked: boolean;
-}
-
-export interface StatEditAction {
-  type: string;
-  payload?: number | string;
-  dispatch: React.Dispatch<StatEditAction>; //Since we are passing the dispatch down to StatEdit
-}
-
 const Character: React.FC<CharacterInterface> = ({ _id, ...attributes }) => {
+  const [updateShows, setUpdateShows] = useState<boolean>(false);
+  //To prevent unneeded update requests
   const { charName, str, agi, int, charClass } = useAttributes({
     ...attributes,
     _id,
@@ -27,6 +20,16 @@ const Character: React.FC<CharacterInterface> = ({ _id, ...attributes }) => {
   /*The useAttributes hook is for converting character attributes into a useReducer state
  that allows an attribute to be edited through a dynamic input field before being updated
  to the server*/
+  const character: CharacterInterface = {
+    name: charName.state.value,
+    strength: str.state.value,
+    agility: agi.state.value,
+    intelligence: int.state.value,
+    charClass: charClass.state.value,
+    _id: _id,
+  };
+
+  useEffect(() => {}, []);
 
   const deleteChar = (charId: string) => {
     try {
@@ -91,20 +94,7 @@ const Character: React.FC<CharacterInterface> = ({ _id, ...attributes }) => {
         Class:{charClass.state.renderStatEditor}
       </RegularText>
       <button onClick={() => deleteChar(_id)}>Delete {_id}</button>
-      <button
-        onClick={() =>
-          updateChar({
-            name: charName.state.value,
-            strength: str.state.value,
-            agility: agi.state.value,
-            intelligence: int.state.value,
-            charClass: charClass.state.value,
-            _id: _id,
-          })
-        }
-      >
-        Update
-      </button>
+      <button onClick={() => updateChar(character)}>Update</button>
     </div>
   );
 };
