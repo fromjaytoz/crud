@@ -9,6 +9,12 @@ import {
   StatEditAction,
 } from "../interfaces/CharacterInterfaces";
 
+//Types
+import {
+  EditableNumberStat,
+  EditableStringStat,
+} from "../types/CharacterTypes";
+
 const useAttributes = ({
   name,
   strength,
@@ -45,23 +51,23 @@ const useAttributes = ({
     }
   };
 
-  const [nameState, nameDispatch]: [
-    nameState: CharAttributeString,
-    nameDispatch: React.Dispatch<StatEditAction>
-  ] = useReducer<(state: CharAttributeString, action: StatEditAction) => any>(
-    statEditReducer,
-    initialState(name)
-  );
-  const [strengthState, strengthDispatch] = useReducer<
+  /*Please see the types Character folder for more information on my EditableStat types*/
+
+  const [nameState, nameDispatch]: EditableStringStat = useReducer<
+    (state: CharAttributeString, action: StatEditAction) => any
+  >(statEditReducer, initialState(name));
+  const [strengthState, strengthDispatch]: EditableNumberStat = useReducer<
     (state: CharAttributeNumber, action: StatEditAction) => any
   >(statEditReducer, initialState(strength));
-  const [agilityState, agilityDispatch] = useReducer<
+  const [agilityState, agilityDispatch]: EditableNumberStat = useReducer<
     (state: CharAttributeNumber, action: StatEditAction) => any
   >(statEditReducer, initialState(agility));
-  const [intelligenceState, intelligenceDispatch] = useReducer<
-    (state: CharAttributeNumber, action: StatEditAction) => any
-  >(statEditReducer, initialState(intelligence));
-  const [classState, classDispatch] = useReducer<
+  const [intelligenceState, intelligenceDispatch]: EditableNumberStat =
+    useReducer<(state: CharAttributeNumber, action: StatEditAction) => any>(
+      statEditReducer,
+      initialState(intelligence)
+    );
+  const [classState, classDispatch]: EditableStringStat = useReducer<
     (state: CharAttributeString, action: StatEditAction) => any
   >(statEditReducer, initialState(charClass));
 
