@@ -11,8 +11,7 @@ import {
 import { Header, RegularText } from "../../styled/styled";
 
 const Character: React.FC<CharacterInterface> = ({ _id, ...attributes }) => {
-  const [updateShows, setUpdateShows] = useState<boolean>(false);
-  //To prevent unneeded update requests
+  const [updateShows, setUpdateShows] = useState<boolean>(false); //To prevent unneeded update requests
   const { charName, str, agi, int, charClass } = useAttributes({
     ...attributes,
     _id,

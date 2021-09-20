@@ -1,11 +1,10 @@
 import { useReducer } from "react";
 import StatEditor from "../../StatEditor/StatEditor";
-
 //Interfaces
 import {
   CharacterInterface,
-  CharAttributeString,
-  CharAttributeNumber,
+  StringEditorStateToggle,
+  NumberEditorStateToggle,
   StatEditAction,
 } from "../interfaces/CharacterInterfaces";
 
@@ -25,15 +24,14 @@ const useAttributes = ({
   charClass,
   _id,
 }: CharacterInterface) => {
-  const initialState = (attribute: number | string) => {
+  const initialState: (attribute: number | string) => {} = (attribute) => {
     return {
       value: attribute,
-      renderStatEditor: <span>{attribute}</span>,
-      clicked: false,
+      renderStatEditor: <span>{attribute}</span>, //Starts out as span and toggles to <StatEditor/>
     };
   };
   const statEditReducer = (
-    state: CharAttributeNumber | CharAttributeString,
+    state: NumberEditorStateToggle | StringEditorStateToggle,
     action: StatEditAction /*<==Since we are passing the dispatch down to StatEdit*/
   ) => {
     switch (action.type) {
