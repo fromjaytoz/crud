@@ -1,7 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import App from "../../App";
-import CharCreation from "../../pages/CharCreation/CharCreation";
-import AllCharacters from "../../pages/AllCharacters/AllCharacters";
 
 describe("navbar behaves properly", () => {
   test("clicking buttons render the appropriate page", () => {
