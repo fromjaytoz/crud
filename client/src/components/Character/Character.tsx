@@ -1,8 +1,11 @@
 import React from "react";
-import CharacterInterface from "./interfaces/CharacterInterface";
-import { Header, RegularText } from "../../styled/styled";
 import axios from "axios";
+//Hooks
 import useAttributes from "./hooks/useAttributes";
+//Interfaces
+import CharacterInterface from "./interfaces/CharacterInterface";
+//Styling
+import { Header, RegularText } from "../../styled/styled";
 
 export interface CharAttributeState {
   value: number | string;
@@ -13,7 +16,7 @@ export interface CharAttributeState {
 export interface StatEditAction {
   type: string;
   payload?: number | string;
-  dispatch: React.Dispatch<StatEditAction>; //since we are passing the dispatch down to StatEdit
+  dispatch: React.Dispatch<StatEditAction>; //Since we are passing the dispatch down to StatEdit
 }
 
 const Character: React.FC<CharacterInterface> = ({ _id, ...attributes }) => {
@@ -21,6 +24,9 @@ const Character: React.FC<CharacterInterface> = ({ _id, ...attributes }) => {
     ...attributes,
     _id,
   });
+  /*The useAttributes hook is for converting character attributes into a useReducer state
+ that allows an attribute to be edited through a dynamic input field before being updated
+ to the server*/
 
   const deleteChar = (charId: string) => {
     try {

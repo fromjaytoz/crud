@@ -1,4 +1,4 @@
-import React, { ReactEventHandler, useState } from "react";
+import React, { useState } from "react";
 import { StatEditAction } from "../Character/Character";
 interface StatEdit {
   originalStat: number | string;
