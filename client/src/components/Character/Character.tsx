@@ -59,7 +59,7 @@ const Character: React.FC<CharacterInterface> = ({ _id, ...attributes }) => {
   };
 
   return (
-    <div>
+    <div data-testid={`character-${_id}`}>
       <Header
         onClick={() => {
           dispatchOnEvent(charName.dispatch);
