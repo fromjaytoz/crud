@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import Character from "../Character/Character";
+import "@testing-library/jest-dom/extend-expect";
 
 const testCharacter = (
   <Character
