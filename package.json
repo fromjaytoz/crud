@@ -1,0 +1,14 @@
+{
+  "name": "crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cd client && yarn install && cd .. && cd server && yarn && install cd ..",
+    "client": "cd client && yarn start",
+    "server": "cd server && yarn start:dev"
+  },
+  "author": "",
+  "license": "ISC"
+}
