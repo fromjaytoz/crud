@@ -17,4 +17,7 @@ This is a full stack campaign manager for tabletop games. It is mostly for dunge
 
 
 A notable feature is clicking for dynamic inputs that appear/disappear onClick/onBlur. This makes for convenient editing and management
-![IVl5Z4yjna](https://user-images.githubusercontent.com/76098411/134488282-7204ce8e-bd62-4aa4-a2ed-78efed9c6802.gif)
+
+![dm](https://user-images.githubusercontent.com/76098411/134812067-4aa76a0a-d575-46bf-b1b8-05bd573e901d.gif)
+
+
