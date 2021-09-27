@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import endpoint from "../../endpoints.config";
+
 //Hooks
 import useAttributes from "./hooks/useAttributes";
+
 //Interfaces
 import {
   CharacterInterface,
   StatEditAction,
 } from "./interfaces/CharacterInterfaces";
+
 //Styling
 import { Header, RegularText } from "../../styled/styled";
-import endpoint from "../../endpoints.config";
 
 const Character: React.FC<CharacterInterface> = ({ _id, ...attributes }) => {
   const [updateShows, setUpdateShows] = useState<boolean>(false); //To prevent unneeded update requests
