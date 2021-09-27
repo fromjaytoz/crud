@@ -7,7 +7,8 @@ const GlobalStyle = createGlobalStyle`
     background: #292527;
     font-family: 'Source Serif Pro', serif;
     font-size: 17.4px;
-    color: white;
+    color: #FFFBF6;
+    text-shadow: 0px 0px 4px #846C50;
   }
 `;
  

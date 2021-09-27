@@ -26,7 +26,7 @@ export const TextInputContainer = styled.div`
     #584e53 100%,
     #584e53 100%
   );
-  border-radius: 1.4px;
+  border-radius: 2.4px;
   border: none;
 
   display: flex;
@@ -34,6 +34,8 @@ export const TextInputContainer = styled.div`
   align-items: center;
 
   margin: 0;
+  box-shadow: 0px 0px 8px 0.4000000059604645px #79654D;
+
 `;
 
 export const TextInput = styled.input`

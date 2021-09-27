@@ -49,7 +49,7 @@ export const Button = styled.button`
     color: #EEEEEE;
     background: radial-gradient(50% 50% at 50% 50%, #6F6167 0%, #4D4448 100%);
     background: ${({bg}) => bg};
-    border: 1.4px solid #241F22;
+    border: none;
     border-radius: 2.4px;
     box-shadow: 0.8px 0.8px 4px rgba(0, 0, 0, 0.25), inset -2.4px -2.4px 4px rgba(0, 0, 0, 0.25);
     
