@@ -12,7 +12,8 @@ export const CharCreationContainer = styled.div`
     "proficiencies avatar skills";
 
     @media only screen and (max-width: 1040px) {
-        grid-template-columns: auto;
+        justify-content: center;
+        grid-template-columns: 240px;
         grid-template-rows: auto;
         grid-template-areas: 
         "avatar"

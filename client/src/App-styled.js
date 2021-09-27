@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import paperBg from './assets/paper-bg.png'
 
 export const AppView = styled.div`
     display: flex;
@@ -15,7 +16,12 @@ export const NavBarContentContainer = styled.div`
 `
 
 export const ContentContainer = styled.div`
-    background: radial-gradient(271.84% 271.84% at 50% 50%, #070508 0%, #998C8D 70.6%);
-    padding: 44px 60px;
+    background-image: url(${paperBg});
+    padding: 80px 100px;
     height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    image-rendering: -webkit-optimize-contrast;
 `
