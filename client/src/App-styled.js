@@ -1,5 +1,7 @@
 import styled from 'styled-components'
-import paperBg from './assets/paper-bg.png'
+import largePaperBg from './assets/large-paper-bg.png'
+import mediumPaperBg from './assets/medium-paper-bg.png'
+import smallPaperBg from './assets/small-paper-bg.png'
 
 export const AppView = styled.div`
     display: flex;
@@ -16,10 +18,10 @@ export const NavBarContentContainer = styled.div`
 `
 
 export const ContentContainer = styled.div`
-    background-image: url(${paperBg});
+    background-image: url(${largePaperBg});
     padding: 80px 100px;
     height: auto;
-    min-height: 500px;
+    min-height: 600px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -27,6 +29,10 @@ export const ContentContainer = styled.div`
     image-rendering: -webkit-optimize-contrast;
 
     @media only screen and (max-width: 1040px) {
-        
+        background-image: url(${mediumPaperBg});
+    }
+
+    @media only screen and (max-width: 800px) {
+        background-image: url(${smallPaperBg});
     }
 `

@@ -1,23 +1,21 @@
 import styled from 'styled-components'
 
 export const NavBarContainer = styled.div`
-    height: 32px;
-
-    display: flex;
     align-items: flex-end;
+    display: flex;
+    height: 32px;
 `
 
 export const NavBarButton = styled.button`
-    background: radial-gradient(249.04% 249.04% at 50% 50%, #161215 0%, #BEADAE 100%);
+    background: linear-gradient(#3B3330 2.2%, #6A5B59 39.9%, #20190F 104.52%);
     border: 1px solid #1A1719;
-    font-family: 'Source Serif Pro', serif;
-    color: white;
+    color: #EFE3D3;
 
+    font-family: 'Source Serif Pro', serif;
     font-size: 20px;
     padding: 2.4px 36px;
-    transition: 0.1s;
-
     padding: ${({ clicked }) => clicked && "5.8px 36px"};
+    transition: 0.1s;
 
     :hover {
         cursor: pointer;
