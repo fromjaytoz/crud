@@ -47,6 +47,7 @@ export const AvatarContainer = styled.div`
 
     margin-bottom: 36px;
     background: radial-gradient(72.62% 50% at 50% 50%, #F2EFF0 0%, #584E53 100%, #584E53 100%);
+    box-shadow: 0px 0px 8px 0.4000000059604645px #79654D;
     padding: 2.8px 1.8px;
 
     display: flex;
@@ -72,8 +73,8 @@ export const LineBreak = styled.div`
     margin-top: 24px;
     margin-bottom: 40px;
     padding: 4px 0;
-    border-bottom: 0.8px solid white;
-    border-top: 0.8px solid white;
+    border-bottom: 0.8px solid #251305;
+    border-top: 0.8px solid #251305;
 `
 
 export const ProficienciesContainer = styled.div`

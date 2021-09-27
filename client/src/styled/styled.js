@@ -37,13 +37,13 @@ export const RegularText = styled.p`
 `
 
 export const Button = styled.button`
-    width: 29.4px;
+    width: auto;
     width: ${({w}) => w};
     height: 29.4px;
-    padding: 1.8px 7.4px;
+    padding: 4px 8px;
     margin: ${({m}) => m};
 
-    font-size: 18.8px;
+    font-size: 17.4px;
     font-family: 'Source Serif Pro', serif;
     text-align: center;
     color: #EEEEEE;
@@ -64,4 +64,9 @@ export const Button = styled.button`
         box-shadow: 1.4px 1.4px 4px rgba(0, 0, 0, 0.25), inset -2.4px -2.4px 4px rgba(0, 0, 0, 0.25);
         filter: brightness(110.4%);
     }
+`
+
+export const ButtonRow = styled.div`
+    display: flex;
+    flex-direction: row;
 `

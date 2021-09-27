@@ -11,7 +11,8 @@ import {
 import {
   Header,
   RegularText,
-  Button
+  Button,
+  ButtonRow
 } from "../../styled/styled"
 
 const Character: React.FC<CharacterInterface> = ({ _id, ...attributes }) => {
@@ -89,19 +90,22 @@ const Character: React.FC<CharacterInterface> = ({ _id, ...attributes }) => {
         Intelligence:{int.state.renderStatEditor}
       </RegularText>
       <RegularText
-        m={"0 0 60px 0"}
+        m={"0 0 52px 0"}
         onClick={() => {
           dispatchOnEvent(charClass.dispatch);
         }}
       >
         Class:{charClass.state.renderStatEditor}
         </RegularText>
+      <ButtonRow>
       <Button
-        m={"0 0 60px 0"}
-        w={"auto"}
-        bg={"radial-gradient(50% 50% at 50% 50%, #E21D1D 0%, #821111 100%)"}
-      onClick={() => deleteChar(_id)}>Delete {_id}</Button>
-      <button onClick={() => updateChar(character)}>Update</button>
+          m={"0 8px 80px 0"}
+          onClick={() => updateChar(character)}>Update</Button>
+        <Button
+          m={"0 0 8px 0"}
+          bg={"radial-gradient(50% 50% at 50% 50%, #E21D1D 0%, #821111 100%)"}
+        onClick={() => deleteChar(_id)}>Delete {_id}</Button>
+      </ButtonRow>
     </div>
   );
 };

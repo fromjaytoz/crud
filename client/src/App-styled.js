@@ -19,9 +19,14 @@ export const ContentContainer = styled.div`
     background-image: url(${paperBg});
     padding: 80px 100px;
     height: auto;
+    min-height: 500px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: relative;
     image-rendering: -webkit-optimize-contrast;
+
+    @media only screen and (max-width: 1040px) {
+        
+    }
 `
